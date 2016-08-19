@@ -7,7 +7,7 @@ except ImportError:
     long_description = open('README.md').read()
 
 DISTNAME='module_name'
-FULLVERSION='0.3'
+FULLVERSION='0.4'
 
 setup(
     name = DISTNAME,
@@ -20,6 +20,11 @@ setup(
     url = 'https://github.com/dalejung/module_name',
     license = 'MIT',
     download_url = 'https://github.com/dalejung/module_name/tarball/'+FULLVERSION,
+    entry_points={
+        'console_scripts': [
+            'py-module-name=module_name.cli:main',
+        ]
+    },
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

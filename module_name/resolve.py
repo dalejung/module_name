@@ -1,23 +1,6 @@
-import argparse
-import os
+import os.path
 import pkgutil
 import imp
-
-def main():
-    parser = argparse.ArgumentParser(description="");
-    parser.add_argument('path', help="path to python file")
-    parser.add_argument('-f', '--flag', help="Will output -m flag if path is importable",
-                        action="store_true")
-    parser.add_argument('-d', '--debug', help="Debug",
-                        action="store_true")
-
-    args = parser.parse_args()
-    path = os.path.abspath(args.path)
-    flag = args.flag
-    debug = args.debug
-
-    output = gen_output(path, flag, debug)
-    print(output)
 
 def gen_output(path, flag, debug):
     try:
