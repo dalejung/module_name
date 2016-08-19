@@ -2,12 +2,12 @@ from distutils.core import setup
 
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
+    long_description = pypandoc.convert_file('README.md', 'rst')
 except ImportError:
     long_description = open('README.md').read()
 
 DISTNAME='module_name'
-FULLVERSION='0.4'
+FULLVERSION='0.5.1'
 
 setup(
     name = DISTNAME,
