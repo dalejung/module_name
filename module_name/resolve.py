@@ -11,9 +11,9 @@ def gen_output(path, flag, debug):
         module_ns = None
 
     if module_ns is None:
-        return repr(path)
+        return path
     if flag:
-        return "-m " + repr(module_ns)
+        return "-m " + module_ns
     return module_ns
 
 def get_module_name(path, debug):
