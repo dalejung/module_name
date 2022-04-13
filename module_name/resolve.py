@@ -1,5 +1,5 @@
 import os.path
-import imp
+import importlib
 
 
 def gen_output(path, flag, debug=False):
@@ -42,8 +42,12 @@ def get_module_name(path, debug=False):
 
     module_ns = '.'.join(reversed(names))
     root_package = names[-1]
-    bits = imp.find_module(root_package)
-    root_path = bits[1]
+    pkg_spec = importlib.util.find_spec(root_package)
+
+    if pkg_spec is None:
+        return None
+
+    root_path = pkg_spec.submodule_search_locations[0]
 
     # instead of loading, we use simple heuristic. if root package
     # exists and in same location as orig_path, then we're good
