@@ -1,8 +1,8 @@
 import os.path
-import pkgutil
 import imp
 
-def gen_output(path, flag, debug):
+
+def gen_output(path, flag, debug=False):
     try:
         module_ns = get_module_name(path, debug)
     except Exception as e:
@@ -16,7 +16,8 @@ def gen_output(path, flag, debug):
         return "-m " + module_ns
     return module_ns
 
-def get_module_name(path, debug):
+
+def get_module_name(path, debug=False):
     orig_path = path
     path, fn = os.path.split(path)
     if not fn.endswith('.py'):
@@ -27,7 +28,7 @@ def get_module_name(path, debug):
     names = [module_name]
 
     while path:
-        if not is_package(path, debug):
+        if not is_package(path):
             if debug:
                 print(path, 'is not a package')
                 print('names=', names)
@@ -52,6 +53,7 @@ def get_module_name(path, debug):
         return module_ns
     return None
 
-def is_package(path, debug):
+
+def is_package(path):
     init_file = os.path.join(path, '__init__.py')
     return os.path.isfile(init_file)
