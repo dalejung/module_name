@@ -7,7 +7,7 @@ except ImportError:
     long_description = open('README.md').read()
 
 DISTNAME='module_name'
-FULLVERSION='0.5.1'
+FULLVERSION='0.6.0'
 
 setup(
     name = DISTNAME,
