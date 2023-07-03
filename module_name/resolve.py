@@ -11,7 +11,8 @@ def gen_output(path, flag, debug=False):
         module_ns = None
 
     if module_ns is None:
-        return path
+        # quote path in case there are spaces
+        return f"\"{path}\""
     if flag:
         return "-m " + module_ns
     return module_ns
@@ -20,6 +21,7 @@ def gen_output(path, flag, debug=False):
 def get_module_name(path, debug=False):
     orig_path = path
     path, fn = os.path.split(path)
+
     if not fn.endswith('.py'):
         if debug:
             print(path, 'is not python file')
